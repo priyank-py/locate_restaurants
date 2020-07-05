@@ -40,6 +40,9 @@ def search(request, cityId, city):
         radius = request.POST.get('radius')
         if not radius:
             radius = 5000
+        jump_to = request.POST.get('jump')
+        if not jump_to:
+            jump_to = 0
         nums = request.POST.get('count')
         if not nums:
             nums = 20
@@ -55,6 +58,7 @@ def search(request, cityId, city):
             'lon': lon,
             'radius': radius,
             'count': nums,
+            'start': jump_to,
             'sort': sort,
             'apikey': key,
         }
