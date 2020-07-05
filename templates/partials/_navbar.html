@@ -1,0 +1,38 @@
+{% block style %}
+    <style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    .menu {
+        width: 100%;
+        height: 30px;
+        background: #34495e;
+    }
+    .menu a:hover{
+        text-decoration: none;
+        padding-bottom: 8px;
+        border-bottom: 5px royalblue solid;
+    }
+        
+    </style>
+{% endblock style %}
+
+<nav>
+    <div class=" row logo display-3 mx-3 my-2">
+        <i class="fa fa-th-large mr-3 mt-2" aria-hidden="true"></i>
+        <span>4 SQUARE</span>
+    </div>
+    <div class="menu my-3 py-4 d-flex justify-content-end align-items-center">
+        <ul class="d-flex list-unstyled my-2 mr-3">
+            <li class="mr-3"><a href="{% url 'home' %}">Home</a></li>
+            <li class="mr-3"><a href="{% url 'about' %} ">About</a></li>
+            <li class="mr-3"><a href="{% url 'contact' %}">Contact Us</a></li>
+            {% if user.username %}
+            <li class="mr-3"><a href="{% url 'admin:logout' %}">Sign out</a></li>
+            {% else %}
+            <li class="mr-3"><a href="{% url 'admin:login' %}">Sign in</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
