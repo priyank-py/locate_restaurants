@@ -125,3 +125,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'locate_restaurants/static'),
 ]
+
+ZOMATO_KEY = 'f628904265f19b87bd1aac9f56662c7a'
+ZOMATO_BASE = 'https://developers.zomato.com/api/v2.1/'

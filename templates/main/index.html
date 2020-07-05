@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <form method="post" id="searchLocation" class="form-group d-flex align-items-center justify-content-center flex-column">
+        {% csrf_token %}
+        <input type="text" class="d-flex  form-control text-center" name="searched" id="searched" autocomplete="false">
+        <input type="submit" value="Get Location" class="btn btn-primary mt-2">
+    </form>
+</div>
+
+<div class="container" id="result">
+    <ul>
+        {% for local in locations %}
+            <li><h3><a href="{% url 'search' local.id local.name %}">{{local.name}}, {{local.country_name}}</a></h3></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+    {% comment %} <script>
+        const form = document.querySelector("#searchLocation");
+        const result = document.querySelector("#result");
+        const query = document.querySelector("#searched");
+
+        async function getResult(q) {
+            const base = "{{zomato_base}}";
+            const key = "{{apikey}}"
+            const query = `?q=${q}&apikey=${key}`;
+
+            const response = await fetch(base+query);
+            const data = await response.json();
+            const locations = data.location_suggestions;
+            console.log(locations)
+            location_list = [];
+            for (local of locations) {
+                const html_body = `<li>
+                        <h3><a href="{% url 'search' local.id %}">${local.name}, ${local.country_name}</a></h3>    
+                    </li>`;
+                location_list.push(html_body);
+            }
+            if (locations.length > 0) {
+                const lists = document.createElement('ul');
+                lists.innerHTML = location_list.join();
+                result.innerHTML = lists.innerHTML;
+            } else {
+                result.innerHTML = "<h3>No city found! Try Again.</h3>"
+            }
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            getResult(query.value)
+        })
+    </script> {% endcomment %}
+
+{% endblock scripts %}

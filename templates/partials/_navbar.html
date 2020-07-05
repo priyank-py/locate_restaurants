@@ -25,11 +25,11 @@
     </div>
     <div class="menu my-3 py-4 d-flex justify-content-end align-items-center">
         <ul class="d-flex list-unstyled my-2 mr-3">
-            <li class="mr-3"><a href="{% url 'home' %}">Home</a></li>
-            <li class="mr-3"><a href="{% url 'about' %} ">About</a></li>
-            <li class="mr-3"><a href="{% url 'contact' %}">Contact Us</a></li>
+            <li class="mr-3"><a href="#">Home</a></li>
+            <li class="mr-3"><a href="#">About</a></li>
+            <li class="mr-3"><a href="#">Contact Us</a></li>
             {% if user.username %}
-            <li class="mr-3"><a href="{% url 'admin:logout' %}">Sign out</a></li>
+            <li class="mr-3"><a href="{% url 'admin:logout' %}">Sign out, {{user.username}}</a></li>
             {% else %}
             <li class="mr-3"><a href="{% url 'admin:login' %}">Sign in</a></li>
             {% endif %}
